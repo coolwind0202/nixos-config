@@ -11,6 +11,17 @@
   imports = [
   ];
 
+  environment.systemPackages = with pkgs; [
+    git
+    curl 
+  ];
+
+  programs.zsh.enable = true;
+  users.users.nixos = {
+    isNormalUser = true;
+    shell = pkgs.zsh;
+  };
+
   wsl.enable = true;
   wsl.defaultUser = "nixos";
 

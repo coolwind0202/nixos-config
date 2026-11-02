@@ -4,7 +4,7 @@
   home.username = "nixos";
   home.homeDirectory = "/home/nixos";
 
-  home.stateVersion = "24.11";
+  home.stateVersion = "26.05";
 
   home.packages = with pkgs; [
     pnpm

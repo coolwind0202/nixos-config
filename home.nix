@@ -9,6 +9,13 @@
   home.packages = with pkgs; [
     pnpm
     uv
+    git
+    zellij
+    socat
+    whois
+    bgpq4
+    talosctl
+    kubectl
   ];
 
   programs.zsh = {
@@ -29,6 +36,10 @@
       rebuild = "sudo nixos-rebuild switch --flake ~/.config/nixos";
       v = "nvim";
     };
+
+    initExtra = ''
+      eval "$(zellij setup --generate-auto-start zsh)"
+    '';
   };
 
   programs.neovim = {
@@ -37,8 +48,20 @@
     viAlias = true;
     vimAlias = true;
 
+    extraPackages = with pkgs; [
+      gcc
+      fd
+      ripgrep
+      #nodePackages.typescript-language-server
+      bash-language-server
+      vim-language-server
+      pyright
+      #stylua
+      #nixfmt-rfc-style
+    ];
     plugins = with pkgs.vimPlugins; [
       vim-nix
+      lazy-nvim
     ];
 
     extraConfig = ''
@@ -48,7 +71,21 @@
       set shiftwidth=2
       set tabstop=2
     '';
+
   };
 
+  programs.git = {
+    enable = true;
+    
+    extraConfig = {
+      safe.directory = "~/.config/nixos";
+    };
+  };
+
+  programs.zellij = {
+    enable = true;
+  };
+
+  xdg.configFile."nvim".source = ./nvim; 
   programs.home-manager.enable = true;
 }

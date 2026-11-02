@@ -77,7 +77,7 @@
   programs.git = {
     enable = true;
     
-    extraConfig = {
+    settings = {
       safe.directory = "~/.config/nixos";
     };
   };

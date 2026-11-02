@@ -40,5 +40,14 @@
     ];
   };
 
+  systemd.services.wsl-mnt-guard = {
+    serviceConfig = {
+      ExecStart = [
+        "" # 既存の ExecStart をリセット
+        "${pkgs.coreutils}/bin/true"
+      ];
+    };
+  };
+
   virtualisation.docker.enable = true;
 }

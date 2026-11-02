@@ -37,7 +37,7 @@
       v = "nvim";
     };
 
-    initExtra = ''
+    initContent = ''
       eval "$(zellij setup --generate-auto-start zsh)"
     '';
   };
